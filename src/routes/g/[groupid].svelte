@@ -203,7 +203,7 @@
 	{#each members as [key, member]}
 		<Item class="rounded-item">
 			<Graphic style="background-image: url({getMemberAvatarURL(member.name)});" />
-			<p>{member.name}</p>
+			<p style="font-weight: 500;">{member.name}</p>
 		</Item>
 	{/each}
 	<Item on:click={() => (openAddMemberDialog = true)} class="rounded-item">
