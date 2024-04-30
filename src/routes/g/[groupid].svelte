@@ -27,7 +27,6 @@
 	import { secretKey, groupDB, groupStore, resetGroupStore } from '$lib/_modules/stores';
 	import LoadingSpinnerOverlay from '$lib/LoadingSpinnerOverlay.svelte';
 	import { storeRecentGroup } from '$lib/_modules/recentGroupsStorage';
-	import SyncIssuesDialog from '$lib/SyncIssuesDialog.svelte';
 	import TransactionsList from '$lib/TransactionsList.svelte';
 	import { PLACEHOLDER_GROUP_NAME } from '$lib/_modules/constants';
 	import { GroupNodeStates } from '$lib/_modules/types';
@@ -39,7 +38,6 @@
 	let openAddMemberDialog: boolean = false;
 	let openAddExpenseDialog: boolean = false;
 	let openViewBalancesDialog: boolean = false;
-	let openSyncIssuesDialog: boolean = false;
 	let openGroupNotesDialog: boolean = false;
 	let copiedLinkSnackbar: SnackbarComponentDev;
 
@@ -244,8 +242,6 @@
 	paymentsObj={$groupStore.payments}
 	membersList={members}
 />
-
-<SyncIssuesDialog bind:openDialog={openSyncIssuesDialog} />
 
 <GroupNotesDialog
 	bind:openDialog={openGroupNotesDialog}
