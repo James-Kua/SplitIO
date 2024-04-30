@@ -27,14 +27,14 @@
 		<SplitioIcon />
 	</div>
 	<div class="group-text-container">
-		<Paper class="paper-demo" elevation={5}>
-			<Title>😞 error</Title>
+		<Paper class="paper-demo" elevation={5} style="width: 460px; max-width: 80vw;">
+			<Title>😟 Error</Title>
 			<Content>
 				{message}
 				<p class="mdc-typography--subtitle2" style="margin: 0; color: #888;">status: {status}</p>
 				<Button href="/" variant="raised" style="display: flex; margin-top: 1rem" color="secondary">
 					<Icon class="material-icons">home</Icon>
-					<Label>Return home</Label>
+					<Label style="text-transform: none; font-weight: semi-bold;">Return Home</Label>
 				</Button>
 			</Content>
 		</Paper>
