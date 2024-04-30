@@ -19,10 +19,10 @@
 	aria-labelledby="over-fullscreen-confirmation-title"
 	aria-describedby="over-fullscreen-confirmation-content"
 >
-	<Title id="over-focus-title">💰 record payment</Title>
+	<Title id="over-focus-title">💰 Record payment</Title>
 	<Content id="over-focus-content">
 		<List twoLine avatarList>
-			<Item on:click={() => console.log('hi')}>
+			<Item>
 				<Graphic style="background-image: url({getMemberAvatarURL(payerName)});" />
 				<Text>
 					<PrimaryText>
@@ -38,7 +38,7 @@
 				/>
 			</Item>
 		</List>
-		<p>this will record a payment of ${roundedDebt} in the group</p>
+		<p>This will record a payment of ${roundedDebt} in the group</p>
 	</Content>
 	<Actions>
 		<Button use={[InitialFocus]}>

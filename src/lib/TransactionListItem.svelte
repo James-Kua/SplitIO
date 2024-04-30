@@ -19,10 +19,12 @@
 				<SecondaryText style="font-size: 16px"><strong>${transaction.amount}</strong> paid by {transaction.paidBy}</SecondaryText>
 			</Text>
 		{:else}
-			<Text>
-				<PrimaryText>{`💵 paid to ${transaction.receivedBy}`}</PrimaryText>
-				<SecondaryText>${absRounded(transaction.amount)} from {transaction.paidBy}</SecondaryText>
-			</Text>
+		<Text>
+			<PrimaryText style="font-weight: 600;">
+			  {`${transaction.paidBy} paid ${transaction.receivedBy}`}
+			</PrimaryText>
+			<SecondaryText>${absRounded(transaction.amount)}</SecondaryText>
+		  </Text>
 		{/if}
 		{#if onDeleteCallback}
 			<Meta class="material-icons" on:click={onDeleteCallback}>clear</Meta>
