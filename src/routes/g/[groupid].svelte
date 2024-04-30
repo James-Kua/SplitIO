@@ -12,7 +12,6 @@
 </script>
 
 <script lang="ts">
-	import SvelteSeo from 'svelte-seo';
 	import { onMount } from 'svelte';
 	import Fab, { Icon as FabIcon } from '@smui/fab';
 	import List, { Item, Text, Meta, Graphic } from '@smui/list';

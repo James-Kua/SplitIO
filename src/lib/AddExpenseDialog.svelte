@@ -22,7 +22,7 @@
 	aria-labelledby="default-focus-title"
 	aria-describedby="default-focus-content"
 >
-	<Title id="default-focus-title">🧾 Add expense</Title>
+	<Title id="default-focus-title">🧾 Add Expense</Title>
 	<Content id="default-focus-content">
 		<LayoutGrid>
 			<Cell span={12}>

@@ -15,13 +15,13 @@
 {#if recentGroups.length !== 0}
 	<div in:slide={{ delay: 0, duration: 600 }}>
 		<Paper elevation={5} class="recent-paper">
-			<Title>🕐 Recent groups</Title>
+			<Title>🕐 Recent Groups</Title>
 			<Content>
 				{#each recentGroups as item}
 					<Item class="rounded-item" on:click={() => redirectToGroup(item.groupId, item.secretKey)}>
 						<Text>
 							{item.groupName}
-							<p class="footer">- id: {item.groupId}</p>
+							<p class="footer" style="font-weight: semi-bold;"> [ID]: {item.groupId}</p>
 						</Text>
 						<Meta class="material-icons">arrow_forward</Meta>
 					</Item>

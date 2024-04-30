@@ -1,5 +1,4 @@
 <script lang="ts">
-	import SvelteSeo from 'svelte-seo';
 	import { Icon } from '@smui/common';
 	import SplitioIcon from '$lib/SplitioIcon.svelte';
 	import Button, { Label } from '@smui/button';
@@ -39,25 +38,6 @@
 		});
 	};
 </script>
-
-<SvelteSeo
-	title='splitio | home'
-	description='split your bills easily! splitio is an open-source webapp built for tracking debts and payments quickly, without any user accounts.'
-	openGraph={{
-		title: 'splitio | split your bills easily!',
-		description: 'splitio is an open-source webapp built for tracking debts and payments quickly, without any user accounts.',
-		url: 'https://github.com/cryptoboid/splitio',
-		type: 'website',
-		images: [
-			{
-				url: 'https://raw.githubusercontent.com/cryptoboid/splitio/main/static/splitio_banner.png',
-				width: 1280,
-				height: 640,
-				alt: 'splitio promotion banner'
-			}
-		]
-	}}
-/>
 
 <div class="homepage-container">
 	<SplitioIcon />
