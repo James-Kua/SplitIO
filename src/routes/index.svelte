@@ -84,30 +84,7 @@
 			<Icon class="material-icons">add</Icon>
 			<Label>create group</Label>
 		</Button>
-		<!-- <div class="mdc-typography--body1">or paste your group id here:</div>
-		<Paper class="solo-paper" elevation={5}>
-			<Icon class="material-icons">group</Icon>
-			<Input
-				bind:value={groupValue}
-				on:keydown={handleKeyDown}
-				placeholder="Group ID"
-				class="solo-input"
-			/>
-			<Fab
-				on:click={() => redirectToGroup(groupValue, window.location.hash)}
-				exited={groupValue === ''}
-				color="secondary"
-				class="solo-fab"
-			>
-				<Icon class="material-icons">arrow_forward</Icon>
-			</Fab>
-		</Paper> -->
 	</div>
-	<IconButton
-		on:click={() => redirectToAbout()}
-		class="material-icons info-btn"
-		aria-label="Information">info</IconButton
-	>
 </div>
 
 <LoadingSpinnerOverlay showOverlay={showLoadingSpinner} />
