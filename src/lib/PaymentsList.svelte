@@ -8,18 +8,13 @@
 
 <List twoLine style="margin-left: 30px; margin-bottom: 10px;">
 	{#if pendingPayments.length === 0}
-		<Item disabled>
-			<Text>
-				<PrimaryText>no pending debts!</PrimaryText>
-				<SecondaryText>check others for payments...</SecondaryText>
-			</Text>
-		</Item>
+		<Text style="font-weight: semi-bold; font-size: 16px;">No outstanding payments 😄</Text>
 	{:else}
 		{#each pendingPayments as [receiverName, debtAmount]}
 			<Item on:click={() => showRecordPaymentCallback(receiverName, debtAmount, payerName)}>
 				<Text>
 					<PrimaryText><span style="color: gray">needs to pay</span> {receiverName}</PrimaryText>
-					<SecondaryText class="error-text">${absRounded(debtAmount)}</SecondaryText>
+					<SecondaryText style="font-weight: bold; font-size: 16px;" class="error-text">${absRounded(debtAmount)}</SecondaryText>
 				</Text>
 				<Graphic
 					style="margin-left: auto; margin-right: 0; background-image: url({getMemberAvatarURL(

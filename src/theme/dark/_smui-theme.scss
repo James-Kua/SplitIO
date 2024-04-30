@@ -38,3 +38,7 @@ a:visited {
 .success-text {
   color: theme.$primary !important
 }
+
+.mdc-dialog__surface {
+  min-width: 480px !important;
+}

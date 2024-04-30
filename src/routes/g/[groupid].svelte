@@ -187,7 +187,7 @@
 	style="overflow-x: auto; flex-wrap: nowrap;"
 	let:chip
 >
-	<Chip {chip} shouldRemoveOnTrailingIconClick={false} on:click={chip.onClick}>
+	<Chip style={"font-size: 16px; margin-top: 16px;"} {chip} shouldRemoveOnTrailingIconClick={false} on:click={chip.onClick}>
 		<LeadingIcon class="material-icons">{chip.icon}</LeadingIcon>
 		<ChipText style="font-weight: bold" tabindex={0}>{chip.title}</ChipText>
 	</Chip>
