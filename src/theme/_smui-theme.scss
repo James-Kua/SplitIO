@@ -39,5 +39,9 @@ a:visited {
 }
 
 .mdc-dialog__surface {
-  min-width: 480px !important;
+  width: 480px !important;
+  max-width: 90vw !important;
+  min-height: 560px !important;
+  max-height: 90vw !important;
+  border-radius: 0.5em !important;
 }

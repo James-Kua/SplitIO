@@ -36,8 +36,8 @@
 <style>
 	* :global(.recent-paper) {
 		margin: 0.5rem 0rem;
-		min-width: 450px;
-		max-width: 95vw;
+		width: 450px;
+		max-width: 80vw !important;
 	}
 
 	.footer {

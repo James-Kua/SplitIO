@@ -38,40 +38,44 @@
 		id="default-focus-content"
 		style="
 			padding-top: .5rem;
+			display: flex;
+			flex-direction: column;
+			height: 100%; /* To ensure the content takes full height */
 		"
 	>
 		{#if isEditMode}
 			<Textfield
-				style="width: 100%; height: 260px; resize: none;"
-				helperLine$style="width: 100%;"
+				style="width: 100%; height: 240px; resize: none;"
 				textarea
 				bind:value={editNotesValue}
 				label="Leave any notes here"
 			>
 				<HelperText slot="helper">Notes will be rendered with markdown</HelperText>
 			</Textfield>
-			<div class="buttons">
-				<Button on:click={() => (isEditMode = false)}>cancel</Button>
-				<Button disabled={isSaving} on:click={submitNotes}>save</Button>
-			</div>
 		{:else}
 			<SvelteMarkdown source={$groupStore.groupNotes || '_no notes here yet..._'} />
-			<div class="buttons">
+		{/if}
+		<div class="buttons" style="margin-top: auto;">
+			{#if isEditMode}
+				<Button on:click={() => (isEditMode = false)}>cancel</Button>
+				<Button disabled={isSaving} on:click={submitNotes}>save</Button>
+			{:else}
 				<Button
 					on:click={() => {
 						editNotesValue = get(groupStore).groupNotes;
 						isEditMode = true;
-					}}>Edit</Button
+					}}
 				>
-			</div>
-		{/if}
+					Edit
+				</Button>
+			{/if}
+		</div>
 	</Content>
 </Dialog>
 
 <style>
 	.buttons {
-		padding-top: 1rem;
-		justify-content: flex-end;
 		display: flex;
+		justify-content: flex-end;
 	}
 </style>
