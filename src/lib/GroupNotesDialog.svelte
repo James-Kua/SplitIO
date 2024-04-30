@@ -20,7 +20,6 @@
 		putNotesCallback(editNotesValue, (args) => {
 			isEditMode = false;
 			isSaving = false;
-			// console.log(args);
 		});
 	};
 </script>
@@ -43,26 +42,26 @@
 	>
 		{#if isEditMode}
 			<Textfield
-				style="width: 100%; height: 80%"
+				style="width: 100%; height: 260px; resize: none;"
 				helperLine$style="width: 100%;"
 				textarea
 				bind:value={editNotesValue}
-				label="type something y'all shouldn't forget"
+				label="Leave any notes here"
 			>
-				<HelperText slot="helper">notes will be rendered with markdown</HelperText>
+				<HelperText slot="helper">Notes will be rendered with markdown</HelperText>
 			</Textfield>
 			<div class="buttons">
 				<Button on:click={() => (isEditMode = false)}>cancel</Button>
 				<Button disabled={isSaving} on:click={submitNotes}>save</Button>
 			</div>
 		{:else}
-			<SvelteMarkdown source={$groupStore.groupNotes || '_no notes here... yet_'} />
+			<SvelteMarkdown source={$groupStore.groupNotes || '_no notes here yet..._'} />
 			<div class="buttons">
 				<Button
 					on:click={() => {
 						editNotesValue = get(groupStore).groupNotes;
 						isEditMode = true;
-					}}>edit</Button
+					}}>Edit</Button
 				>
 			</div>
 		{/if}
