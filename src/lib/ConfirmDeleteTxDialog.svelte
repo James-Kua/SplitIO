@@ -14,12 +14,12 @@
 	aria-labelledby="default-focus-title"
 	aria-describedby="default-focus-content"
 >
-	<Title id="default-focus-title">⚠️ delete transaction?</Title>
+	<Title id="default-focus-title">⚠️ Delete transaction?</Title>
 	<Content id="default-focus-content">
 		<List twoLine avatarList>
 			<TransactionListItem {transaction} />
 		</List>
-		<p>this will delete the selected transaction from the group. continue?</p>
+		<p>This will delete the selected transaction from the group. Continue?</p>
 	</Content>
 	<Actions>
 		<Button use={[InitialFocus]}>

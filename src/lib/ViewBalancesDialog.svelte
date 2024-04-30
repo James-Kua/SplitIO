@@ -50,7 +50,7 @@
 	aria-describedby="default-focus-content"
 >
 	<Header>
-		<Title id="fullscreen-title">⚖️ balances</Title>
+		<Title id="fullscreen-title">⚖️ Balances</Title>
 		<IconButton action="close" class="material-icons">close</IconButton>
 	</Header>
 	<Content id="default-focus-content">

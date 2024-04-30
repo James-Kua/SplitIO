@@ -47,17 +47,17 @@
 
 	let chips = [
 		{
-			title: 'balances',
+			title: 'Balances',
 			icon: 'balance',
 			onClick: () => (openViewBalancesDialog = true)
 		},
 		{
-			title: 'group notes',
+			title: 'Group Notes',
 			icon: 'description',
 			onClick: () => (openGroupNotesDialog = true)
 		},
 		{
-			title: 'share group',
+			title: 'Share Group',
 			icon: 'share',
 			onClick: () => {
 				if (navigator.share) {
@@ -74,11 +74,6 @@
 				}
 			}
 		},
-		{
-			title: 'sync issues?',
-			icon: 'sync_problem',
-			onClick: () => (openSyncIssuesDialog = true)
-		}
 	];
 
 	onMount(() => {
@@ -183,57 +178,38 @@
 	$: members = Object.entries($groupStore.members);
 </script>
 
-<SvelteSeo
-	openGraph={{
-		title: 'splitio | group',
-		description:
-			'split your bills easily! splitio is an open-source webapp built for tracking debts and payments quickly, without any user accounts.',
-		url: 'https://github.com/cryptoboid/splitio',
-		type: 'website',
-		images: [
-			{
-				url: 'https://raw.githubusercontent.com/cryptoboid/splitio/main/static/splitio_banner.png',
-				width: 1280,
-				height: 640,
-				alt: 'splitio promotion banner'
-			}
-		]
-	}}
-/>
-
 <svelte:head>
 	<title>splitio | {$groupStore.groupInfo.name}</title>
 </svelte:head>
 
-<div class="mdc-typography--headline5">{$groupStore.groupInfo.name}</div>
+<div class="mdc-typography--headline4" style="font-weight: bold; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">{$groupStore.groupInfo.name}</div>
 
 <Set
 	{chips}
-	style="overflow-x: auto; flex-wrap: nowrap; margin-left: -10px; margin-right: -10px"
+	style="overflow-x: auto; flex-wrap: nowrap;"
 	let:chip
 >
 	<Chip {chip} shouldRemoveOnTrailingIconClick={false} on:click={chip.onClick}>
 		<LeadingIcon class="material-icons">{chip.icon}</LeadingIcon>
-		<ChipText tabindex={0}>{chip.title}</ChipText>
+		<ChipText style="font-weight: bold" tabindex={0}>{chip.title}</ChipText>
 	</Chip>
 </Set>
 
-<div class="mdc-typography--headline5">💸 group transactions</div>
+<div class="mdc-typography--headline5" style="margin-top: 15px; font-weight: 500">💸 Group Transactions</div>
 
 <TransactionsList {transactions} />
 
-<div class="mdc-typography--headline5">🤝 members</div>
+<div class="mdc-typography--headline5" style="font-weight: 500">🫂 Members</div>
 
 <List oneLine avatarList style="margin-bottom: 70px;">
 	{#each members as [key, member]}
 		<Item class="rounded-item">
 			<Graphic style="background-image: url({getMemberAvatarURL(member.name)});" />
-			<Text>{member.name}</Text>
-			<!-- <Meta class="material-icons">info</Meta> -->
+			<p>{member.name}</p>
 		</Item>
 	{/each}
 	<Item on:click={() => (openAddMemberDialog = true)} class="rounded-item">
-		<Text>add someone</Text>
+		<Text style="font-weight: bold">➕ Add new member</Text>
 		<Meta class="material-icons">person_add</Meta>
 	</Item>
 </List>
@@ -277,14 +253,11 @@
 />
 
 <Snackbar bind:this={copiedLinkSnackbar}>
-	<Label>📋 link copied to clipboard, now share it!</Label>
+	<Label>📋 Link copied to clipboard!</Label>
 </Snackbar>
 
 <style>
 	.flexy {
-		/* display: flex;
-		flex-wrap: wrap;
-		align-items: center; */
 		position: fixed;
 		bottom: 10px;
 		right: 10px;

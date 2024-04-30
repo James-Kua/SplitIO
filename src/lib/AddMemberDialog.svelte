@@ -14,14 +14,14 @@
 	aria-labelledby="default-focus-title"
 	aria-describedby="default-focus-content"
 >
-	<Title id="default-focus-title">👋 add someone</Title>
+	<Title id="default-focus-title">👋 Add New Member</Title>
 	<Content id="default-focus-content">
 		<div>
-			enter their name:
+			Enter new member name:
 			<Textfield bind:value={inputName} />
 		</div>
 
-		<p>⚠️ once added, <strong>you can't edit nor delete a member</strong>, so choose wisely!</p>
+		<p>⚠️ Once added, <strong>You can't edit nor delete a member</strong>, so choose wisely!</p>
 	</Content>
 	<Actions>
 		<Button>

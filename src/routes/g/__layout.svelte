@@ -38,7 +38,6 @@
 	<div class="container">
 		<slot />
 	</div>
-	<div class="mdc-typography--caption footer">made with ❤️ by cryptoboid</div>
 </AutoAdjust>
 
 <style>

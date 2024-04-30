@@ -22,23 +22,23 @@
 	aria-labelledby="default-focus-title"
 	aria-describedby="default-focus-content"
 >
-	<Title id="default-focus-title">🧾 add expense</Title>
+	<Title id="default-focus-title">🧾 Add expense</Title>
 	<Content id="default-focus-content">
 		<LayoutGrid>
 			<Cell span={12}>
-				enter a description:
+				Enter description:
 				<Textfield bind:value={inputName} />
 			</Cell>
 			<Cell span={12}>
-				enter the $ amount:
+				Enter amount ($):
 				<Textfield type="number" bind:value={inputAmount} />
 			</Cell>
 			<Cell span={12}>
-				who payed?
+				Who paid?
 				<Select bind:value={inputPaidBy} class="add-expense-select">
 					<Icon
 						slot="leadingIcon"
-						style="background-image: url({getMemberAvatarURL(inputPaidBy, 24)});"
+						style="background-image: url({getMemberAvatarURL(inputPaidBy, 24)}); margin-left: 4px;"
 					/>
 					<Option value="" />
 					{#each membersList as [key, member]}

@@ -10,13 +10,13 @@
 
 <div>
 	<Item class={`rounded-item ${isSettlement ? 'settlement-item' : ''}`}>
-		<Graphic style="text-align: center; width: 1.75rem;">
+		<Graphic style="text-align: center; width: 1.75rem; font-weight: bold">
 			{timestampToShortDate(transaction.timestamp)}
 		</Graphic>
 		{#if !isSettlement}
 			<Text>
-				<PrimaryText>{transaction.title}</PrimaryText>
-				<SecondaryText>${transaction.amount} by {transaction.paidBy}</SecondaryText>
+				<PrimaryText style="font-weight: 600;">{transaction.title}</PrimaryText>
+				<SecondaryText style="font-size: 16px"><strong>${transaction.amount}</strong> paid by {transaction.paidBy}</SecondaryText>
 			</Text>
 		{:else}
 			<Text>

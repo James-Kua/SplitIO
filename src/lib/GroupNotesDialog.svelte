@@ -32,7 +32,7 @@
 	aria-describedby="default-focus-content"
 >
 	<Header>
-		<Title id="fullscreen-title">📝 group notes</Title>
+		<Title id="fullscreen-title">📝 Group Notes</Title>
 		<IconButton action="close" class="material-icons">close</IconButton>
 	</Header>
 	<Content
