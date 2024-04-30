@@ -36,14 +36,12 @@
 <style>
 	* :global(.recent-paper) {
 		margin: 0.5rem 0rem;
-		min-width: 250px;
-		max-width: 300px;
+		min-width: 450px;
+		max-width: 95vw;
 	}
 
 	.footer {
-		/* text-align: center; */
 		display: inline;
 		color: grey;
-		/* height: 33px; */
 	}
 </style>

@@ -39,11 +39,3 @@
 		<slot />
 	</div>
 </AutoAdjust>
-
-<style>
-	.footer {
-		text-align: center;
-		color: grey;
-		height: 33px;
-	}
-</style>
