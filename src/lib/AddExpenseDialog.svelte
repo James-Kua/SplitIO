@@ -27,15 +27,15 @@
 		<LayoutGrid>
 			<Cell span={12}>
 				Enter description:
-				<Textfield bind:value={inputName} />
+				<Textfield bind:value={inputName} style="width: 100%;"/>
 			</Cell>
 			<Cell span={12}>
 				Enter amount ($):
-				<Textfield type="number" bind:value={inputAmount} />
+				<Textfield type="number" bind:value={inputAmount} style="width: 100%;"/>
 			</Cell>
 			<Cell span={12}>
 				Who paid?
-				<Select bind:value={inputPaidBy} class="add-expense-select">
+				<Select bind:value={inputPaidBy} class="add-expense-select" style="width: 100%">
 					<Icon
 						slot="leadingIcon"
 						style="background-image: url({getMemberAvatarURL(inputPaidBy, 24)}); margin-left: 4px;"
