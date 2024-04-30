@@ -23,7 +23,7 @@
 			<PrimaryText style="font-weight: 600;">
 			  {`${transaction.paidBy} paid ${transaction.receivedBy}`}
 			</PrimaryText>
-			<SecondaryText>${absRounded(transaction.amount)}</SecondaryText>
+			<SecondaryText style="font-weight: 600; font-size: 16px;">${absRounded(transaction.amount)}</SecondaryText>
 		  </Text>
 		{/if}
 		{#if onDeleteCallback}

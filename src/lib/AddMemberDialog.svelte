@@ -18,7 +18,7 @@
 	<Content id="default-focus-content">
 		<div>
 			Enter new member name:
-			<Textfield bind:value={inputName} />
+			<Textfield bind:value={inputName} style="width: 100%"/>
 		</div>
 
 		<p>⚠️ Once added, <strong>You can't edit nor delete a member</strong>, so choose wisely!</p>

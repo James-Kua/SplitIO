@@ -5,23 +5,14 @@
 	import Button, { Label } from '@smui/button';
 	import CreateGroupDialog from '$lib/CreateGroupDialog.svelte';
 	import { getSEA, initAppDB } from '$lib/_modules/initGun';
-	import { redirectToAbout, redirectToGroup } from '$lib/_modules/utils';
+	import { redirectToGroup } from '$lib/_modules/utils';
 	import { putSecure } from '$lib/_modules/secure';
-	import IconButton from '@smui/icon-button/IconButton.svelte';
 	import type { IGunStaticSEA } from 'gun/types/static/sea';
 	import LoadingSpinnerOverlay from '$lib/LoadingSpinnerOverlay.svelte';
 	import RecentGroupsList from '$lib/RecentGroupsList.svelte';
 
-	let groupValue = '';
 	let openCreateGroupDialog: boolean = false;
 	let showLoadingSpinner: boolean = false;
-
-	function handleKeyDown(event: CustomEvent | KeyboardEvent) {
-		event = event as KeyboardEvent;
-		if (event.key === 'Enter') {
-			redirectToGroup(groupValue, window.location.hash);
-		}
-	}
 
 	let appDB: any = undefined;
 	let SEA: IGunStaticSEA | undefined = undefined;
@@ -73,8 +64,8 @@
 	<div class="group-text-container">
 		<RecentGroupsList />
 		<Button
-			style="border-radius: 17px; margin: 1rem"
-			variant="raised"
+			style="border-radius: 8px; margin: 1rem"
+			variant="unelevated"
 			color="secondary"
 			on:click={() => {
 				openCreateGroupDialog = true;
@@ -82,7 +73,7 @@
 			}}
 		>
 			<Icon class="material-icons">add</Icon>
-			<Label>create group</Label>
+			<Label style="text-transform: none; font-weight: bold;">Create Group</Label>
 		</Button>
 	</div>
 </div>

@@ -15,10 +15,10 @@
 	aria-labelledby="default-focus-title"
 	aria-describedby="default-focus-content"
 >
-	<Title id="default-focus-title">✨ create a new group</Title>
+	<Title id="default-focus-title">✨ Create a new group</Title>
 	<Content id="default-focus-content">
-		please enter your groups name:
-		<Textfield bind:value={inputName} />
+		Please enter a group name:
+		<Textfield bind:value={inputName} style="width: 100%"/>
 	</Content>
 	<Actions>
 		<Button>
@@ -32,7 +32,7 @@
 				inputName = '';
 			}}
 		>
-			<Label>create!</Label>
+			<Label>create</Label>
 		</Button>
 	</Actions>
 </Dialog>

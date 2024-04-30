@@ -18,7 +18,7 @@
 			</SecondaryText>
 		{:else}
 			<SecondaryText>
-				no debt
+				No outstanding payments
 			</SecondaryText>
 		{/if}
 	</Text>
