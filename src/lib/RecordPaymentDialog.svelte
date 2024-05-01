@@ -38,7 +38,7 @@
 				/>
 			</Item>
 		</List>
-		<p>This will record a payment of ${roundedDebt} in the group</p>
+		<p>This will record a payment of ${roundedDebt} in the transactions list</p>
 	</Content>
 	<Actions>
 		<Button use={[InitialFocus]}>
@@ -49,7 +49,7 @@
 			disabled={payerName === '' || receiverName === '' || roundedDebt === 0.0}
 			on:click={() => recordPayment(payerName, receiverName, absAmount)}
 		>
-			<Label>save</Label>
+			<Label>Continue</Label>
 		</Button>
 	</Actions>
 </Dialog>

@@ -26,15 +26,15 @@
 	<Content id="default-focus-content">
 		<LayoutGrid>
 			<Cell span={12}>
-				Enter description:
+				<strong>Enter description:</strong>
 				<Textfield bind:value={inputName} style="width: 100%;"/>
 			</Cell>
 			<Cell span={12}>
-				Enter amount ($):
+				<strong>Enter amount ($):</strong>
 				<Textfield type="number" bind:value={inputAmount} style="width: 100%;"/>
 			</Cell>
 			<Cell span={12}>
-				Who paid?
+				<strong>Who paid?</strong>
 				<Select bind:value={inputPaidBy} class="add-expense-select" style="width: 100%">
 					<Icon
 						slot="leadingIcon"

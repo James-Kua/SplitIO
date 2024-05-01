@@ -8,7 +8,7 @@
 
 <List twoLine style="margin-left: 30px; margin-bottom: 10px;">
 	{#if pendingPayments.length === 0}
-		<Text style="font-weight: semi-bold; font-size: 16px;">No outstanding payments 😄</Text>
+		<SecondaryText style="font-weight: semi-bold;">No outstanding payments 😄</SecondaryText>
 	{:else}
 		{#each pendingPayments as [receiverName, debtAmount]}
 			<Item on:click={() => showRecordPaymentCallback(receiverName, debtAmount, payerName)}>
