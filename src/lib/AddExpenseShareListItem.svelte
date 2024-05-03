@@ -23,7 +23,7 @@
 
 <li class="item" class:uninvolved={value === 0}>
 	<Graphic style="background-image: url({getMemberAvatarURL(member.name)});" />
-	<Text><strong>{member.name}</strong></Text>
+	<strong>{member.name}</strong>
 
 	<div class="meta">
 		{#if splitType === SplitType.Percent}
