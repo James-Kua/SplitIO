@@ -15,7 +15,7 @@
 		{#each pendingPayments as [receiverName, debtAmount]}
 			<Item on:click={() => showRecordPaymentCallback(receiverName, debtAmount, payerName)}>
 				<Text>
-					<PrimaryText><span style="color: gray">needs to pay</span> {receiverName}</PrimaryText>
+					<PrimaryText><span style="color: gray;">needs to pay</span> {receiverName}</PrimaryText>
 					<SecondaryText style="font-weight: bold; font-size: 16px;" class="error-text">{CURRENCY_SYMBOLS[currency]}{absRounded(debtAmount)}</SecondaryText>
 				</Text>
 				<Graphic

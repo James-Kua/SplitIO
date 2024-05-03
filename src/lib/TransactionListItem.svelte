@@ -19,13 +19,13 @@
 		on:SMUI:action={() => (open = !open)}
 		nonInteractive={false}
 	>
-		<Graphic style="text-align: center; width: 1.75rem;">
+		<Graphic style="text-align: center; width: 1.75rem; font-weight: bold">
 			{timestampToShortDate(transaction.timestamp)}
 		</Graphic>
 		{#if 'title' in transaction}
 			<Text>
-				<PrimaryText>{transaction.title}</PrimaryText>
-				<SecondaryText style="font-size: 16px"><strong>{CURRENCY_SYMBOLS[currency]}{transaction.amount}</strong> paid by {transaction.paidBy}</SecondaryText>
+				<PrimaryText style="font-weight: 600;">{transaction.title}</PrimaryText>
+				<SecondaryText style="font-size: 16px"><strong>{CURRENCY_SYMBOLS[currency]}{transaction.amount}</strong> paid by <strong>{transaction.paidBy}</strong></SecondaryText>
 			</Text>
 		{:else}
 		<Text>
@@ -46,9 +46,9 @@
 				<ul>
 					<Text>
 						{#if transaction.splitType === SplitType.Percent}
-							{memberName}'s share was <strong>{split.toFixed(2)}%</strong>
+							<strong>{memberName}</strong>'s share was <strong>{split.toFixed(1)}%</strong>
 						{:else if transaction.splitType === SplitType.Amount}
-							{memberName} paid <strong>{split.toFixed(2)}</strong>
+							<strong>{memberName}</strong> paid <strong>{split.toFixed(2)}</strong>
 						{/if}
 					</Text>
 				</ul>

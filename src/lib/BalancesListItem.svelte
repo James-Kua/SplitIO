@@ -13,7 +13,7 @@
 <Item on:click={onClickCallback}>
 	<Graphic style="background-image: url({getMemberAvatarURL(payerName)});" />
 	<Text>
-		<PrimaryText>{payerName}</PrimaryText>
+		<PrimaryText style="font-weight: bold">{payerName}</PrimaryText>
 		{#if amount !== 0.0}
 			<SecondaryText class={amount < 0 ? 'error-text' : 'success-text'}>
 				{amount < 0 ? 'owes' : 'to receive'} {CURRENCY_SYMBOLS[currency]}{absRounded(amount)}
