@@ -78,7 +78,10 @@
 				<ul>
 					<Text>
 						{#if transaction.splitType === SplitType.Percent}
-							<strong>{memberName}</strong>'s share is <strong>{split.toFixed(1)}%</strong>
+						<Text>
+							<strong>{memberName}</strong>'s share is {split.toFixed(1)}% 
+							<strong style="margin-left: 5px">({CURRENCY_SYMBOLS[currency]}{(transaction.amount * (split / 100)).toFixed(2)})</strong>
+						</Text>
 						{:else if transaction.splitType === SplitType.Amount}
 							<strong>{memberName}</strong>'s share is <strong>{CURRENCY_SYMBOLS[currency]}{split.toFixed(2)}</strong>
 						{/if}
