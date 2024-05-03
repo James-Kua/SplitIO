@@ -40,19 +40,23 @@
 
 			<div style="display: flex; overflow-x: auto; margin-left: 15px;">
 				{#each members as member (member)}
-					<Wrapper>
-					<Graphic 
-						style="background-image: url({getMemberAvatarURL(member)}); 
-						width: 1.65rem; 
-						height: 1.65rem; 
-						background-size: cover; 
-						border-radius: 30%;" 
-					/>
-					<!-- FIXME: this tooltip does not work after several clicks of delete transaction item -->
-					<!-- <Tooltip>
-						{member}
-					</Tooltip> -->
-				</Wrapper>
+					<!-- This div is neccessary to prevent crash with tooltip usage
+						https://github.com/hperrin/svelte-material-ui/issues/453
+					-->
+					<div>
+						<Wrapper>
+							<Graphic 
+								style="background-image: url({getMemberAvatarURL(member)}); 
+								width: 1.65rem; 
+								height: 1.65rem; 
+								background-size: cover; 
+								border-radius: 30%;" 
+							/>
+							<Tooltip>
+								{member}
+							</Tooltip>
+						</Wrapper>
+					</div>
 				{/each}
 			</div>
 		{:else}
