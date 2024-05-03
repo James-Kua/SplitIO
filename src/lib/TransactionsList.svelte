@@ -3,19 +3,23 @@
 	import ConfirmDeleteTxDialog from './ConfirmDeleteTxDialog.svelte';
 	import TransactionListItem from './TransactionListItem.svelte';
 	import { TRANSACTIONS_INC_MAX_SHOW, TRANSACTIONS_INITIAL_MAX_SHOW } from './_modules/constants';
+	import type { Currency, Transaction } from './_modules/types';
 
 	export let transactions = [];
+	export let currency: string;
 
 	let maxShownTx = TRANSACTIONS_INITIAL_MAX_SHOW;
 
-	let openConfirmDeleteDialog: boolean = false;
-	let confirmDeleteTx = {};
+	let openConfirmDeleteDialog: boolean;
+	let confirmDeleteTx: Transaction;
+	let confirmDeleteTxKey: string;
 </script>
 
 <List twoLine avatarList>
 	{#each transactions.slice(0, maxShownTx) as [key, transaction]}
 		<TransactionListItem
 			{transaction}
+			{currency}
 			onDeleteCallback={() => {
 				confirmDeleteTx = transaction;
 				confirmDeleteTx.key = key;
@@ -26,8 +30,7 @@
 	{#if !transactions.length}
 		<Item disabled class="rounded-item">
 			<Text>
-				<PrimaryText>nothing yet...</PrimaryText>
-				<SecondaryText>add a new expense with the plus sign</SecondaryText>
+				<SecondaryText>Nothing yet... add a new expense with the plus sign</SecondaryText>
 			</Text>
 		</Item>
 	{/if}
@@ -47,4 +50,9 @@
 	{/if}
 </List>
 
-<ConfirmDeleteTxDialog bind:openDialog={openConfirmDeleteDialog} transaction={confirmDeleteTx} />
+<ConfirmDeleteTxDialog
+	bind:openDialog={openConfirmDeleteDialog}
+	transaction={confirmDeleteTx}
+	transactionKey={confirmDeleteTxKey}
+	{currency}
+/>

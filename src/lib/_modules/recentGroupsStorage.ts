@@ -15,9 +15,3 @@ export function getRecentGroups(): object[] {
 function storeAllRecentGroups(recentGroups: object[]) {
 	localStorage.setItem(RECENT_GROUPS_KEY, JSON.stringify(recentGroups));
 }
-
-// function isSameGroup(oldGroup: object, newGroupId: string, newSecretKey: string, newGroupName: string) {
-//     return oldGroup.groupId === newGroupId
-//         && oldGroup.secretKey === newSecretKey
-//         && oldGroup.groupName === newGroupName;
-// }

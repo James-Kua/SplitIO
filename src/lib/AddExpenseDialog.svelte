@@ -10,6 +10,7 @@
 	import { Currency, Expense, Member, SplitType } from './_modules/types';
 	import { getMemberAvatarURL } from './_modules/utils';
 	import AddExpenseSplitField from './AddExpenseSplitField.svelte';
+	import { CURRENCY_SYMBOLS } from './_modules/constants';
 
 	export let openDialog: boolean;
 	export let addCallback: (expense: Expense) => void;
@@ -112,7 +113,7 @@
 				<Textfield bind:value={inputName} style="width: 100%;"/>
 			</Cell>
 			<Cell span={12}>
-				<strong>Enter amount ($):</strong>
+				<strong>Enter amount ({CURRENCY_SYMBOLS[currency]}):</strong>
 				<Textfield type="number" bind:value={inputAmount} style="width: 100%;"/>
 			</Cell>
 			<Cell span={12}>

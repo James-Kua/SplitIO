@@ -6,6 +6,7 @@
 	import Textfield from '@smui/textfield';
 	import type { Currency, Member } from '$lib/_modules/types';
 	import { SplitType } from '$lib/_modules/types';
+	import { CURRENCY_SYMBOLS } from './_modules/constants';
 
 	export let value: number;
 	export let setValue: (memberName: string, value: number) => void;
@@ -40,6 +41,7 @@
 				on:change={onChangeValue}
 				class="expense-share-textfield"
 				type="number"
+				prefix={CURRENCY_SYMBOLS[currency]}
 				input$min={0}
 			/>
 		{/if}

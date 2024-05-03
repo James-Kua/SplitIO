@@ -5,7 +5,6 @@ export const STORAGE_PREFIX = 'splitio';
 export const RECENT_GROUPS_KEY = `${STORAGE_PREFIX}_recent_groups`;
 export const MAX_RECENT_GROUPS_AMNT = 10;
 
-
 export const CURRENCY_SYMBOLS = {
 	SGD: '$',
 	RMB: '¥',

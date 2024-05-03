@@ -27,7 +27,7 @@
 	import LoadingSpinnerOverlay from '$lib/LoadingSpinnerOverlay.svelte';
 	import { storeRecentGroup } from '$lib/_modules/recentGroupsStorage';
 	import TransactionsList from '$lib/TransactionsList.svelte';
-	import { PLACEHOLDER_GROUP_NAME } from '$lib/_modules/constants';
+	import { CURRENCY_SYMBOLS, PLACEHOLDER_GROUP_NAME } from '$lib/_modules/constants';
 	import { GroupNodeStates } from '$lib/_modules/types';
 	import GroupNotFoundDialog from '$lib/GroupNotFoundDialog.svelte';
 	import GroupNotesDialog from '$lib/GroupNotesDialog.svelte';
@@ -114,6 +114,7 @@
 			$secretKey,
 			(plain, key) => {
 				$groupStore.groupInfo.name = plain.name;
+				$groupStore.groupInfo.currency = plain.currency;
 				storeRecentGroup(GROUPID, $secretKey, plain.name);
 			},
 			(key) => {
@@ -170,6 +171,8 @@
 		(a, b) => b[1].timestamp - a[1].timestamp
 	);
 	$: members = Object.entries($groupStore.members);
+
+	$: currency = $groupStore.groupInfo.currency || 'SGD'
 </script>
 
 <svelte:head>
@@ -191,7 +194,7 @@
 
 <div class="mdc-typography--headline5" style="margin-top: 15px; font-weight: 500">💸 Group Transactions</div>
 
-<TransactionsList {transactions} />
+<TransactionsList {transactions} {currency} />
 
 <div class="mdc-typography--headline5" style="font-weight: 500">🫂 Members</div>
 
@@ -228,6 +231,7 @@
 <!-- add expense dialog -->
 <AddExpenseDialog
 	membersList={members}
+	currency={currency}
 	bind:openDialog={openAddExpenseDialog}
 	addCallback={addExpense}
 />
@@ -237,6 +241,7 @@
 	expensesObj={$groupStore.expenses}
 	paymentsObj={$groupStore.payments}
 	membersList={members}
+	{currency}
 />
 
 <GroupNotesDialog

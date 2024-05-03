@@ -25,14 +25,14 @@
 		{#if 'title' in transaction}
 			<Text>
 				<PrimaryText>{transaction.title}</PrimaryText>
-				<SecondaryText style="font-size: 16px"><strong>${transaction.amount}</strong> paid by {transaction.paidBy}</SecondaryText>
+				<SecondaryText style="font-size: 16px"><strong>{CURRENCY_SYMBOLS[currency]}{transaction.amount}</strong> paid by {transaction.paidBy}</SecondaryText>
 			</Text>
 		{:else}
 		<Text>
 			<PrimaryText style="font-weight: 600;">
 			  {`${transaction.paidBy} paid ${transaction.receivedBy}`}
 			</PrimaryText>
-			<SecondaryText style="font-weight: 600; font-size: 16px;">${absRounded(transaction.amount)}</SecondaryText>
+			<SecondaryText style="font-weight: 600; font-size: 16px;">{CURRENCY_SYMBOLS[currency]}{absRounded(transaction.amount)}</SecondaryText>
 		  </Text>
 		{/if}
 		{#if onDeleteCallback}

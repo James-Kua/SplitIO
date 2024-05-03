@@ -4,9 +4,13 @@
 	import List from '@smui/list';
 	import TransactionListItem from './TransactionListItem.svelte';
 	import { removeTransaction } from './_modules/money';
+	import type { Transaction } from './_modules/types'
+	import type { Currency } from './_modules/types'
 
-	export let openDialog = false;
-	export let transaction = {};
+	export let openDialog: boolean;
+	export let transaction: Transaction;
+	export let transactionKey: string;
+	export let currency: Currency;
 </script>
 
 <Dialog
@@ -14,24 +18,26 @@
 	aria-labelledby="default-focus-title"
 	aria-describedby="default-focus-content"
 >
-	<Title id="default-focus-title">⚠️ Delete transaction?</Title>
-	<Content id="default-focus-content">
-		<List twoLine avatarList>
-			<TransactionListItem {transaction} />
-		</List>
-		<p>This will delete the selected transaction from the group. Continue?</p>
-	</Content>
-	<Actions>
-		<Button use={[InitialFocus]}>
-			<Label>cancel</Label>
-		</Button>
-		<Button
-			variant="unelevated"
-			on:click={() => {
-				removeTransaction(transaction.key, transaction);
-			}}
-		>
-			<Label>delete</Label>
-		</Button>
-	</Actions>
+	{#if transaction }
+		<Title id="default-focus-title">⚠️ delete transaction?</Title>
+		<Content id="default-focus-content">
+			<List twoLine avatarList>
+				<TransactionListItem {transaction} {currency} />
+			</List>
+			<p>This will delete the selected transaction from the group. continue?</p>
+		</Content>
+		<Actions>
+			<Button use={[InitialFocus]}>
+				<Label>cancel</Label>
+			</Button>
+			<Button
+				variant="unelevated"
+				on:click={() => {
+					removeTransaction(transactionKey, transaction);
+				}}
+			>
+				<Label>delete</Label>
+			</Button>
+		</Actions>
+	{/if}
 </Dialog>
