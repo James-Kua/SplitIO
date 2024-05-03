@@ -17,10 +17,25 @@
 	export let membersList: Array<[string, Member]>;
 	export let currency: Currency;
 
-	function getInitialSplit(): Record<SplitType, Record<string, number>> {
+	function getInitialSplit(): Record < SplitType, Record < string, number >> {
+		const numMembers = membersList.length;
+
+		const initialAmount = (inputAmount ?? 0) / numMembers;
+		const initialPercent = 100 / numMembers;
+
 		return {
-			[SplitType.Amount]: membersList.reduce((acc, [member]) => ({ ...acc, [member]: 0 }), {}),
-			[SplitType.Percent]: membersList.reduce((acc, [member]) => ({ ...acc, [member]: 0 }), {})
+			[SplitType.Amount]: membersList.reduce(
+				(acc, [member]) => ({
+					...acc,
+					[member]: initialAmount
+				}), {}
+			),
+			[SplitType.Percent]: membersList.reduce(
+				(acc, [member]) => ({
+					...acc,
+					[member]: initialPercent
+				}), {}
+			),
 		};
 	}
 
@@ -33,7 +48,7 @@
 	let inputAmount: number = 0.0;
 	let inputPaidBy: string = '';
 	let isSplitPopulated = false;
-	let split = getInitialSplit();
+	$: split = splitType ? getInitialSplit() : {};
 	let splitType: SplitType | undefined = undefined;
 
 	function addMember(memberKey: string) {
