@@ -32,7 +32,9 @@
 		<div style="margin-top: 12px"> 
 			<Select bind:value={currency} label="Currency (all expenses will be in this currency)" style="width: 100%;">
 				{#each options as option (option)}
-					<Option value={option}>{option} {CURRENCY_SYMBOLS[option]}</Option>
+					<Option value={option}>
+						<strong>{option}</strong>({CURRENCY_SYMBOLS[option]})
+					</Option>
 				{/each}
 			</Select>
 		</div>
