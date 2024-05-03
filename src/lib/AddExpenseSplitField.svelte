@@ -61,7 +61,7 @@
 
 		{#if !areAllInvolved}
 			<Button on:click={() => menu.setOpen(true)} class="button-shaped-round">
-				<Label>➕ Add someone</Label>
+				<Label>➕ Add Member</Label>
 			</Button>
 		{/if}
 	</div>
