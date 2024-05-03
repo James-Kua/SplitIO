@@ -24,7 +24,7 @@
 			<List twoLine avatarList>
 				<TransactionListItem {transaction} {currency} />
 			</List>
-			<p>This will delete the selected transaction from the group. continue?</p>
+			<p>This will delete the transaction from the group and balances will be recalculated. Continue?</p>
 		</Content>
 		<Actions>
 			<Button use={[InitialFocus]}>

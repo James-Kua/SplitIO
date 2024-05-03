@@ -42,9 +42,10 @@ a:visited {
 .mdc-dialog__surface {
   width: 480px !important;
   max-width: 90vw !important;
-  min-height: 560px !important;
-  max-height: 90vw !important;
+  max-height: 85vh !important;
   border-radius: 0.5em !important;
+  overflow-x: auto !important;
+  overflow-y: auto !important;
 }
 
 .mdc-deprecated-list-item  {

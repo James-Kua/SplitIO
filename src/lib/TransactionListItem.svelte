@@ -41,7 +41,7 @@
 	</Item>
 
 	{#if open && 'splits' in transaction && transaction.splits}
-		<ul>
+		<ul style="margin-bottom: 0.4rem;">
 			{#each Object.entries(transaction.splits) as [memberName, split]}
 				<ul>
 					<Text>
