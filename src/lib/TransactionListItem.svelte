@@ -1,21 +1,30 @@
 <script lang="ts">
+	import { SplitType } from './_modules/types';
 	import { Item, Graphic, Text, PrimaryText, SecondaryText, Meta } from '@smui/list';
 	import { absRounded, timestampToShortDate } from './_modules/utils';
+	import { CURRENCY_SYMBOLS } from './_modules/constants';
+	import type { Transaction, Currency } from './_modules/types';
 
-	export let transaction = {};
-	export let onDeleteCallback: Function | undefined = undefined;
+	export let transaction: Transaction;
+	export let onDeleteCallback: (() => void) | undefined = undefined;
+	export let currency: Currency;
 
-	$: isSettlement = transaction.title === undefined;
+	$: isSettlement = !('title' in transaction && transaction.title);
+	let open = false;
 </script>
 
 <div>
-	<Item class={`rounded-item ${isSettlement ? 'settlement-item' : ''}`}>
-		<Graphic style="text-align: center; width: 1.75rem; font-weight: bold">
+	<Item
+		class={`rounded-item ${isSettlement ? 'settlement-item' : ''}`}
+		on:SMUI:action={() => (open = !open)}
+		nonInteractive={false}
+	>
+		<Graphic style="text-align: center; width: 1.75rem;">
 			{timestampToShortDate(transaction.timestamp)}
 		</Graphic>
-		{#if !isSettlement}
+		{#if 'title' in transaction}
 			<Text>
-				<PrimaryText style="font-weight: 600;">{transaction.title}</PrimaryText>
+				<PrimaryText>{transaction.title}</PrimaryText>
 				<SecondaryText style="font-size: 16px"><strong>${transaction.amount}</strong> paid by {transaction.paidBy}</SecondaryText>
 			</Text>
 		{:else}
@@ -30,4 +39,22 @@
 			<Meta class="material-icons" on:click={onDeleteCallback}>clear</Meta>
 		{/if}
 	</Item>
+
+	{#if open && 'splits' in transaction && transaction.splits}
+		<ul>
+			{#each Object.entries(transaction.splits) as [memberName, split]}
+				<ul>
+					<Text>
+						{#if transaction.splitType === SplitType.Share}
+							{memberName}'s relative share was {split}
+						{:else if transaction.splitType === SplitType.Percent}
+							{memberName}'s share was {split.toFixed(2)}%
+						{:else if transaction.splitType === SplitType.Amount}
+							{memberName}'s share was {split.toFixed(2)}
+						{/if}
+					</Text>
+				</ul>
+			{/each}
+		</ul>
+	{/if}
 </div>

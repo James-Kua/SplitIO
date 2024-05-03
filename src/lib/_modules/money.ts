@@ -1,54 +1,70 @@
 import { get } from 'svelte/store';
 import { setSecure } from './secure';
+import type { Expense, Payment, Transaction, Member } from './types';
+import { SplitType } from './types';
 import { groupDB, groupStore, secretKey } from './stores';
 
-export function computeBalances(allExpensesObject, allMembers, allDonePaymentsObject) {
-	let allExpenses = Object.entries(allExpensesObject);
-	let allDonePayments = Object.entries(allDonePaymentsObject);
-	if (!allExpenses || allMembers.length === 0) return [];
+export function computeBalances(
+	allExpensesObject: Record<string, Expense>,
+	allMembers: Array<[string, Member]>,
+	allDonePaymentsObject: Record<string, Payment>
+): Array<[string, number]> {
+	const allExpenses = Object.entries(allExpensesObject);
+	const allDonePayments = Object.entries(allDonePaymentsObject);
+	if (!allExpenses.length || !allMembers.length) return [];
 
-	let total = allExpenses.map((x) => x[1].amount).reduce((a, b) => a + b, 0);
-	let numMembers = allMembers.length;
-	let eachUserBalance = {};
-	let payments = {}; // payments["charles"] = [["cryptoboid", 10]]
+	const numMembers = allMembers.length;
+	const totalByMember: Record<string, number> = {};
+	const eachMemberBalance: Record<string, number> = {};
+	const payments: Record<string, Array<[string, number]>> = {}; // payments["charles"] = [["cryptoboid", 10]]
 
-	for (const member of allMembers) {
-		// if (member[1] === NaN) return {};
-		eachUserBalance[member[0]] = 0;
-		payments[member[0]] = [];
+	for (const [member] of allMembers) {
+		eachMemberBalance[member] = 0;
+		payments[member] = [];
+		totalByMember[member] = 0;
 	}
-	// console.debug("after members! ===============", eachUserBalance);
+	for (const [_, expense] of allExpenses) {
+		const payer = expense.paidBy;
+		if (eachMemberBalance[payer] === undefined) {
+			return [];
+		}
+		eachMemberBalance[payer] += expense.amount;
 
-	for (const expense of allExpenses) {
-		const payer = expense[1].paidBy;
-		if (eachUserBalance[payer] === undefined) return [];
-
-		eachUserBalance[payer] += expense[1].amount;
+		if (!expense.splitType || !expense.splits) {
+			// Legacy expense: split equally by all members.
+			for (const [member] of allMembers) {
+				totalByMember[member] += expense.amount / numMembers;
+			}
+		} else {
+			const totalShares = Object.values(expense.splits).reduce((acc, v) => acc + v, 0);
+			for (const [member, share] of Object.entries(expense.splits)) {
+				totalByMember[member] += expense.amount * share / totalShares;
+			}
+		}
 	}
 
 	for (const payment of allDonePayments) {
 		const payer = payment[1].paidBy;
 		const receiver = payment[1].receivedBy;
-		// if (eachUserBalance[payer] === undefined)
-		//     return [];
-		eachUserBalance[payer] += payment[1].amount;
-		eachUserBalance[receiver] -= payment[1].amount;
+		eachMemberBalance[payer] += payment[1].amount;
+		eachMemberBalance[receiver] -= payment[1].amount;
 	}
 
-	for (let [usr, balance] of Object.entries(eachUserBalance)) {
-		eachUserBalance[usr] = balance - total / numMembers;
+	for (const [member, balance] of Object.entries(eachMemberBalance)) {
+		eachMemberBalance[member] = balance - totalByMember[member];
 	}
 
-	// console.debug(eachUserBalance);
-	return Object.entries(eachUserBalance).sort((a, b) => b[1] - a[1]);
+	return Object.entries(eachMemberBalance).sort((a, b) => b[1] - a[1]);
 }
 
-export function computePayments(balance: [string, unknown][]): any {
-	let sortedMostGenerous = balance.map((x) => Array.from(x));
+export function computePayments(
+	balance: [string, number][]
+): Record<string, Array<[string, number]>> {
+	let sortedMostGenerous = balance.map((x) => Array.from(x) as [string, number]);
 	let currMostGen = 0,
 		currLeastGen = sortedMostGenerous.length - 1;
 
-	let result = {};
+	let result: Record<string, Array<[string, number]>> = {};
 
 	for (const member of sortedMostGenerous) {
 		result[member[0]] = [];
@@ -88,7 +104,7 @@ export function recordPayment(payerName: string, receiverName: string, payedAmou
 	const bothExist = payerName in groupStoreRef.members && receiverName in groupStoreRef.members;
 	if (!bothExist) throw SyntaxError;
 	setSecure(
-		get(groupDB).get('payments'),
+		get(groupDB)!.get('payments'),
 		{
 			paidBy: payerName,
 			receivedBy: receiverName,
@@ -100,14 +116,14 @@ export function recordPayment(payerName: string, receiverName: string, payedAmou
 }
 
 function removeExpense(key: string) {
-	get(groupDB).get('expenses').get(key).put(null);
+	get(groupDB)!.get('expenses').get(key).put(null);
 }
 
 function removePayment(key: string) {
-	get(groupDB).get('payments').get(key).put(null);
+	get(groupDB)!.get('payments').get(key).put(null);
 }
 
-export function removeTransaction(key: string, transaction: object) {
-	if (transaction.title) removeExpense(key);
+export function removeTransaction(key: string, transaction: Transaction) {
+	if ('title' in transaction) removeExpense(key);
 	else removePayment(key);
 }
