@@ -12,7 +12,7 @@
 	export let currency: Currency;
 
 	$: isSettlement = !('title' in transaction && transaction.title);
-	let members = transaction.splits ? Object.keys(transaction.splits) : [];
+	$: members = transaction.splits ? Object.keys(transaction.splits) : [];
 	let open = false;
 </script>
 
@@ -48,9 +48,10 @@
 						background-size: cover; 
 						border-radius: 30%;" 
 					/>
-					<Tooltip>
+					<!-- FIXME: this tooltip does not work after several clicks of delete transaction item -->
+					<!-- <Tooltip>
 						{member}
-					</Tooltip>
+					</Tooltip> -->
 				</Wrapper>
 				{/each}
 			</div>
