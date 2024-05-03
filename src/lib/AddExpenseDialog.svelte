@@ -2,7 +2,6 @@
 	import Dialog, { Title, Content, Actions } from '@smui/dialog';
 	import Button, { Label } from '@smui/button';
 	import Textfield from '@smui/textfield';
-	import FormField from '@smui/form-field';
 	import Radio from '@smui/radio';
 	import LayoutGrid, { Cell, InnerGrid } from '@smui/layout-grid';
 	import Select, { Option } from '@smui/select';
@@ -19,16 +18,14 @@
 
 	function getInitialSplit(): Record<SplitType, Record<string, number>> {
 		return {
-			[SplitType.Share]: membersList.reduce((acc, [member]) => ({ ...acc, [member]: 1 }), {}),
 			[SplitType.Amount]: membersList.reduce((acc, [member]) => ({ ...acc, [member]: 0 }), {}),
 			[SplitType.Percent]: membersList.reduce((acc, [member]) => ({ ...acc, [member]: 0 }), {})
 		};
 	}
 
 	const splitOptions: Array<{ name: string; value: SplitType }> = [
-		{ name: 'by shares', value: SplitType.Share },
-		{ name: 'by percentages', value: SplitType.Percent },
-		{ name: 'by exact amounts', value: SplitType.Amount }
+		{ name: 'By percentages', value: SplitType.Percent },
+		{ name: 'By exact amounts', value: SplitType.Amount }
 	];
 
 	let inputName: string = '';
@@ -39,14 +36,12 @@
 	let splitType: SplitType | undefined = undefined;
 
 	function addMember(memberKey: string) {
-		split[SplitType.Share][memberKey] = 0;
 		split[SplitType.Amount][memberKey] = 0;
 		split[SplitType.Percent][memberKey] = 0;
 		split = split;
 	}
 
 	function deleteMember(memberKey: string) {
-		delete split[SplitType.Share][memberKey];
 		delete split[SplitType.Amount][memberKey];
 		delete split[SplitType.Percent][memberKey];
 		split = split;
@@ -139,29 +134,23 @@
 			</Cell>
 
 			<Cell span={12}>
-				How should the expense be split?
-				<InnerGrid>
-					{#each splitOptions as option}
-						<Cell span={4}>
-							<FormField>
-								<Radio
-									bind:group={splitType}
-									value={option.value}
-									on:change={() => {
-										if (!isSplitPopulated) {
-											isSplitPopulated = true;
-											split = getInitialSplit();
-										}
-									}}
-								/>
-								<span slot="label" style="white-space: nowrap; cursor: pointer;">
-									{option.name}
-								</span>
-							</FormField>
-						</Cell>
-					{/each}
-				</InnerGrid>
-			</Cell>
+				<strong>How should the expense be split?</strong>
+				{#each splitOptions as option}
+				  <div style="display: flex; align-items: center; margin-top: 5px">
+					<Radio
+					  bind:group={splitType}
+					  value={option.value}
+					  on:change={() => {
+						if (!isSplitPopulated) {
+						  isSplitPopulated = true;
+						  split = getInitialSplit();
+						}
+					  }}
+					/>
+					<span style="margin-left: 5px">{option.name}</span>
+				  </div>
+				{/each}
+			  </Cell>
 
 			{#if splitType}
 				<AddExpenseSplitField

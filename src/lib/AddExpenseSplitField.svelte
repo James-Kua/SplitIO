@@ -2,7 +2,6 @@
 	import AddExpenseShareListItem from './AddExpenseShareListItem.svelte';
 	import Menu from '@smui/menu';
 	import List, { Item, Text, Meta, Graphic } from '@smui/list';
-	import { Icon } from '@smui/icon-button';
 	import { getMemberAvatarURL } from '$lib/_modules/utils';
 
 	import Button, { Label } from '@smui/button';
@@ -61,9 +60,8 @@
 		</Menu>
 
 		{#if !areAllInvolved}
-			<Button on:click={() => menu.setOpen(true)} variant="outlined" class="button-shaped-round">
-				<Icon class="material-icons">person_add</Icon>
-				<Label>add someone</Label>
+			<Button on:click={() => menu.setOpen(true)} class="button-shaped-round">
+				<Label>➕ Add someone</Label>
 			</Button>
 		{/if}
 	</div>

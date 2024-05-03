@@ -45,12 +45,10 @@
 			{#each Object.entries(transaction.splits) as [memberName, split]}
 				<ul>
 					<Text>
-						{#if transaction.splitType === SplitType.Share}
-							{memberName}'s relative share was {split}
-						{:else if transaction.splitType === SplitType.Percent}
-							{memberName}'s share was {split.toFixed(2)}%
+						{#if transaction.splitType === SplitType.Percent}
+							{memberName}'s share was <strong>{split.toFixed(2)}%</strong>
 						{:else if transaction.splitType === SplitType.Amount}
-							{memberName}'s share was {split.toFixed(2)}
+							{memberName}'s share was <strong>{split.toFixed(2)}</strong>
 						{/if}
 					</Text>
 				</ul>
