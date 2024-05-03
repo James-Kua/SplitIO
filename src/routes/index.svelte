@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Icon } from '@smui/common';
 	import SplitioIcon from '$lib/SplitioIcon.svelte';
-	import Button, { Label } from '@smui/button';
+	import Button from '@smui/button';
 	import CreateGroupDialog from '$lib/CreateGroupDialog.svelte';
 	import { getSEA, initAppDB } from '$lib/_modules/initGun';
 	import { redirectToGroup } from '$lib/_modules/utils';
@@ -52,8 +51,7 @@
 				initGunIfNew();
 			}}
 		>
-			<Icon class="material-icons">add</Icon>
-			<Label style="text-transform: none; font-weight: bold;">Create Group</Label>
+			<p style="text-transform: none; font-weight: bold; font-size: 1rem">➕ Create Group</p>
 		</Button>
 	</div>
 </div>
