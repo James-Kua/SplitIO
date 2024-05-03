@@ -5,6 +5,7 @@
 	import { CURRENCY_SYMBOLS } from './_modules/constants';
 	import type { Transaction, Currency } from './_modules/types';
 	import { getMemberAvatarURL } from '$lib/_modules/utils';
+	import Tooltip, { Wrapper } from '@smui/tooltip';
 
 	export let transaction: Transaction;
 	export let onDeleteCallback: (() => void) | undefined = undefined;
@@ -39,6 +40,7 @@
 
 			<div style="display: flex; overflow-x: auto; margin-left: 15px;">
 				{#each members as member}
+					<Wrapper>
 					<Graphic 
 						style="background-image: url({getMemberAvatarURL(member)}); 
 						width: 1.65rem; 
@@ -46,6 +48,10 @@
 						background-size: cover; 
 						border-radius: 30%;" 
 					/>
+					<Tooltip>
+						{member}
+					</Tooltip>
+				</Wrapper>
 				{/each}
 			</div>
 		{:else}
