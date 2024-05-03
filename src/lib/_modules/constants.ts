@@ -8,4 +8,5 @@ export const MAX_RECENT_GROUPS_AMNT = 10;
 export const CURRENCY_SYMBOLS = {
 	SGD: '$',
 	RMB: '¥',
+	YEN: '¥'
 };
