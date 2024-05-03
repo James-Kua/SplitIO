@@ -39,7 +39,7 @@
 			</div>
 
 			<div style="display: flex; overflow-x: auto; margin-left: 15px;">
-				{#each members as member}
+				{#each members as member (member)}
 					<Wrapper>
 					<Graphic 
 						style="background-image: url({getMemberAvatarURL(member)}); 
@@ -69,7 +69,7 @@
 
 	{#if open && 'splits' in transaction && transaction.splits}
 		<ul style="margin-bottom: 0.4rem;">
-			{#each Object.entries(transaction.splits) as [memberName, split]}
+			{#each Object.entries(transaction.splits) as [memberName, split] (memberName)}
 				<ul>
 					<Text>
 						{#if transaction.splitType === SplitType.Percent}

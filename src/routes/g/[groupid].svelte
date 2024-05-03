@@ -199,7 +199,7 @@
 <div class="mdc-typography--headline5" style="font-weight: 500">🫂 Members</div>
 
 <List oneLine avatarList style="margin-bottom: 70px;">
-	{#each members as [key, member]}
+	{#each members as [key, member] (key)}
 		<Item class="rounded-item">
 			<Graphic style="background-image: url({getMemberAvatarURL(member.name)});" />
 			<p style="font-weight: 500;">{member.name}</p>

@@ -56,7 +56,7 @@
 	</Header>
 	<Content id="default-focus-content">
 		<List twoLine avatarList style="margin-bottom: 70px;">
-			{#each balances as [payerName, amount]}
+			{#each balances as [payerName, amount] (payerName)}
 				<BalancesListItem
 					isExpanded={expandedMembers[payerName]}
 					{payerName}

@@ -17,7 +17,7 @@
 		<Paper elevation={5} class="recent-paper">
 			<Title>🕐 Recent Groups</Title>
 			<Content>
-				{#each recentGroups as item}
+				{#each recentGroups as item (item)}
 					<Item class="rounded-item" on:click={() => redirectToGroup(item.groupId, item.secretKey)}>
 						<Text>
 							{item.groupName}

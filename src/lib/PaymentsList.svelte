@@ -12,7 +12,7 @@
 	{#if pendingPayments.length === 0}
 		<SecondaryText style="font-weight: semi-bold;">No outstanding payments 😄</SecondaryText>
 	{:else}
-		{#each pendingPayments as [receiverName, debtAmount]}
+		{#each pendingPayments as [receiverName, debtAmount] (receiverName)}
 			<Item on:click={() => showRecordPaymentCallback(receiverName, debtAmount, payerName)}>
 				<Text>
 					<PrimaryText><span style="color: gray;">needs to pay</span> {receiverName}</PrimaryText>

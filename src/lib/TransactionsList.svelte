@@ -16,7 +16,7 @@
 </script>
 
 <List twoLine avatarList>
-	{#each transactions.slice(0, maxShownTx) as [key, transaction]}
+	{#each transactions.slice(0, maxShownTx) as [key, transaction] (key)}
 		<TransactionListItem
 			{transaction}
 			{currency}

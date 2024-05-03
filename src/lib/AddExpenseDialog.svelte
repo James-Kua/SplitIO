@@ -139,7 +139,7 @@
 						style="background-image: url({getMemberAvatarURL(inputPaidBy, 24)});"
 					/>
 					<Option value="" />
-					{#each membersList as [key, member]}
+					{#each membersList as [key, member] (key)}
 						<Option value={member.name}>
 							<Graphic
 								style="background-image: url({getMemberAvatarURL(member.name, 24)});"
@@ -151,7 +151,7 @@
 
 			<Cell span={12}>
 				<strong>How should the expense be split?</strong>
-				{#each splitOptions as option}
+				{#each splitOptions as option (option)}
 				  <div style="display: flex; align-items: center; margin-top: 5px">
 					<Radio
 					  bind:group={splitType}

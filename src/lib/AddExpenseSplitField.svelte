@@ -29,7 +29,7 @@
 
 <Cell span={12}>
 	<List oneLine avatarList>
-		{#each membersList as [key, member]}
+		{#each membersList as [key, member] (key)}
 			{#if key in split[splitType]}
 				<AddExpenseShareListItem
 					{member}
@@ -48,7 +48,7 @@
 	<div>
 		<Menu bind:this={menu}>
 			<List oneLine avatarList>
-				{#each membersList as [memberKey, member]}
+				{#each membersList as [memberKey, member] (key)}
 					{#if !(memberKey in split[splitType])}
 						<Item class="rounded-item" on:SMUI:action={() => addMember(memberKey)}>
 							<Graphic style="background-image: url({getMemberAvatarURL(member.name)});" />
