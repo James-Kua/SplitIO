@@ -48,7 +48,7 @@
 	<div>
 		<Menu bind:this={menu}>
 			<List oneLine avatarList>
-				{#each membersList as [memberKey, member] (key)}
+				{#each membersList as [memberKey, member]}
 					{#if !(memberKey in split[splitType])}
 						<Item class="rounded-item" on:SMUI:action={() => addMember(memberKey)}>
 							<Graphic style="background-image: url({getMemberAvatarURL(member.name)});" />
