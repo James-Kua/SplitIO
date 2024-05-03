@@ -22,7 +22,7 @@
 			{currency}
 			onDeleteCallback={() => {
 				confirmDeleteTx = transaction;
-				confirmDeleteTx.key = key;
+				confirmDeleteTxKey = key;
 				openConfirmDeleteDialog = true;
 			}}
 		/>

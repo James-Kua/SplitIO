@@ -19,7 +19,7 @@
 	aria-describedby="default-focus-content"
 >
 	{#if transaction }
-		<Title id="default-focus-title">⚠️ delete transaction?</Title>
+		<Title id="default-focus-title">⚠️ Delete Transaction?</Title>
 		<Content id="default-focus-content">
 			<List twoLine avatarList>
 				<TransactionListItem {transaction} {currency} />
