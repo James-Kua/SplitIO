@@ -106,7 +106,7 @@
 </script>
 
 <svelte:head>
-	<title>splitio | inspector</title>
+	<title>SplitIO | inspector</title>
 </svelte:head>
 
 <div class="mdc-typography--headline5">group inspector</div>

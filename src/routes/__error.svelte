@@ -19,7 +19,7 @@
 </script>
 
 <svelte:head>
-	<title>splitio | error</title>
+	<title>SplitIO | error</title>
 </svelte:head>
 
 <div class="homepage-container">

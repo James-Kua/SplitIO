@@ -176,7 +176,7 @@
 </script>
 
 <svelte:head>
-	<title>splitio | {$groupStore.groupInfo.name}</title>
+	<title>SplitIO | {$groupStore.groupInfo.name}</title>
 </svelte:head>
 
 <div class="mdc-typography--headline4" style="font-weight: bold; font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif">{$groupStore.groupInfo.name}</div>

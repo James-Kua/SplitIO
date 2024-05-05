@@ -10,7 +10,7 @@
 
 <svelte:head>
 	{#if notFound}
-		<title>splitio | not found</title>
+		<title>SplitIO | not found</title>
 	{/if}
 </svelte:head>
 
