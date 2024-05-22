@@ -54,12 +54,41 @@
 	function addMember(memberKey: string) {
 		split[SplitType.Amount][memberKey] = 0;
 		split[SplitType.Percent][memberKey] = 0;
+
+		const updatedMembersCount = Object.keys(split[SplitType.Amount]).length;
+
+		const updatedAmountSplit = {};
+		const updatedPercentSplit = {};
+
+		Object.keys(split[SplitType.Amount]).forEach(member => {
+			updatedAmountSplit[member] = inputAmount / updatedMembersCount;
+			updatedPercentSplit[member] = 100 / updatedMembersCount;
+		});
+
+		split[SplitType.Amount] = updatedAmountSplit;
+		split[SplitType.Percent] = updatedPercentSplit;
+
 		split = split;
 	}
 
 	function deleteMember(memberKey: string) {
 		delete split[SplitType.Amount][memberKey];
 		delete split[SplitType.Percent][memberKey];
+
+		const updatedMembersCount = Object.keys(split[SplitType.Amount]);
+		const remainingMembersCount = updatedMembersCount.length;
+
+		const updatedAmountSplit = {};
+		const updatedPercentSplit = {};
+
+		updatedMembersCount.forEach(member => {
+			updatedAmountSplit[member] = inputAmount / remainingMembersCount;
+			updatedPercentSplit[member] = 100 / remainingMembersCount;
+		});
+
+		split[SplitType.Amount] = updatedAmountSplit;
+		split[SplitType.Percent] = updatedPercentSplit;
+
 		split = split;
 	}
 
