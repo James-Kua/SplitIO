@@ -5,7 +5,6 @@
 	import Radio from '@smui/radio';
 	import LayoutGrid, { Cell, InnerGrid } from '@smui/layout-grid';
 	import Select, { Option } from '@smui/select';
-	import Icon from '@smui/select/icon';
 	import { Graphic } from '@smui/list';
 	import { Currency, Expense, Member, SplitType } from './_modules/types';
 	import { getMemberAvatarURL } from './_modules/utils';
@@ -129,7 +128,7 @@
 	$: isValid = (() => {
 		if (inputName === '') return false;
 		if (isNaN(inputAmount) || inputAmount <= 0.0) return false;
-		if (inputPaidBy === '') return false;
+		if (!inputPaidBy) return false;
 		if (!splitType) return false;
 
 		let valueTotal = 0;
@@ -163,17 +162,13 @@
 			<Cell span={12}>
 				<strong>Who paid?</strong>
 				<Select bind:value={inputPaidBy} class="add-expense-select" style="width: 100%">
-					<Icon
-						slot="leadingIcon"
-						style="background-image: url({getMemberAvatarURL(inputPaidBy, 24)});"
-					/>
-					<Option value="" />
 					{#each membersList as [key, member] (key)}
-						<Option value={member.name}>
+						<Option value={member.name} style="font-weight: 600;">
 							<Graphic
 								style="background-image: url({getMemberAvatarURL(member.name, 24)});"
-							/>{member.name}</Option
-						>
+							/>
+							{member.name}
+						</Option>
 					{/each}
 				</Select>
 			</Cell>

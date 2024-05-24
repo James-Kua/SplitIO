@@ -55,3 +55,8 @@ a:visited {
 ::-webkit-scrollbar {
   display: none;
 }
+
+.mdc-chip,
+.mdc-chip__ripple {
+  border-radius: 8px !important;
+}

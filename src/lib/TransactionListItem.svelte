@@ -22,58 +22,63 @@
 		on:SMUI:action={() => (open = !open)}
 		nonInteractive={false}
 	>
-		<Graphic style="text-align: center; width: 1.75rem; font-weight: bold">
-			{timestampToShortDate(transaction.timestamp)}
-		</Graphic>
-		{#if 'title' in transaction}
-			<div>
-				<Text>
-					<div style="font-weight: 600; white-space: nowrap;">
-						{transaction.title}
-					</div>
-					<div style="font-size: 16px; white-space: nowrap;">
-						<strong>{CURRENCY_SYMBOLS[currency]}{transaction.amount}</strong> 
-						paid by <strong>{transaction.paidBy}</strong>
-					</div>
-				</Text>
-			</div>
-
-			<div style="display: flex; overflow-x: auto; margin-left: 15px;">
-				{#each members as member (member)}
-					<!-- This div is neccessary to prevent crash with tooltip usage
-						https://github.com/hperrin/svelte-material-ui/issues/453
-					-->
+		<div style="display: flex; width: 100%; overflow-x: auto; align-items: center;">
+			<Graphic style="text-align: center; width: 1.75rem; font-weight: bold; flex-shrink: 0;">
+				{timestampToShortDate(transaction.timestamp)}
+			</Graphic>
+			{#if 'title' in transaction}
+				<div style="display: flex;">
 					<div>
-						<Wrapper>
-							<Graphic 
-								style="background-image: url({getMemberAvatarURL(member)}); 
-								width: 1.65rem; 
-								height: 1.65rem; 
-								background-size: cover; 
-								border-radius: 30%;" 
-							/>
-							<Tooltip>
-								{member}
-							</Tooltip>
-						</Wrapper>
+						<Text>
+							<div style="font-weight: 600;">
+								{transaction.title}
+							</div>
+							<div style="font-size: 16px;">
+								<strong>{CURRENCY_SYMBOLS[currency]}{transaction.amount}</strong> 
+								paid by <strong>{transaction.paidBy}</strong>
+							</div>
+						</Text>
 					</div>
-				{/each}
-			</div>
-		{:else}
-			<Text>
-				<PrimaryText style="font-weight: 600;">
-				{`${transaction.paidBy} paid ${transaction.receivedBy}`}
-				</PrimaryText>
-				<SecondaryText style="font-weight: 600; font-size: 16px;">{CURRENCY_SYMBOLS[currency]}{absRounded(transaction.amount)}</SecondaryText>
-			</Text>
-		{/if}
+					<div style="display: flex; align-items: center; margin-left: 15px;">
+						{#each members as member (member)}
+							<!-- This div is necessary to prevent crash with tooltip usage
+								https://github.com/hperrin/svelte-material-ui/issues/453
+							-->
+							<div style="flex-shrink: 0;">
+								<Wrapper>
+									<Graphic 
+										style="background-image: url({getMemberAvatarURL(member)}); 
+										width: 1.65rem; 
+										height: 1.65rem; 
+										background-size: cover; 
+										border-radius: 30%;" 
+									/>
+									<Tooltip>
+										{member}
+									</Tooltip>
+								</Wrapper>
+							</div>
+						{/each}
+					</div>
+				</div>
+			{:else}
+				<Text style="justify-content: center;">
+					<span style="font-weight: 600;">
+						{`${transaction.paidBy} paid ${transaction.receivedBy}`}
+					</span>
+					<SecondaryText style="font-weight: 600; font-size: 16px;">
+						{CURRENCY_SYMBOLS[currency]}{absRounded(transaction.amount)}
+					</SecondaryText>
+				</Text>
+			{/if}
+		</div>
 		{#if onDeleteCallback}
 			<Meta class="material-icons" on:click={onDeleteCallback}>clear</Meta>
 		{/if}
 	</Item>
 
 	{#if open && 'splits' in transaction && transaction.splits}
-		<ul style="margin-bottom: 0.4rem;">
+		<div style="margin-bottom: 0.4rem;">
 			{#each Object.entries(transaction.splits) as [memberName, split] (memberName)}
 				<ul>
 					<Text>
@@ -88,6 +93,6 @@
 					</Text>
 				</ul>
 			{/each}
-		</ul>
+		</div>
 	{/if}
 </div>
