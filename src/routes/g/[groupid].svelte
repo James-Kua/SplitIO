@@ -60,8 +60,8 @@
 				if (navigator.share) {
 					navigator
 						.share({
-							title: 'splitio',
-							text: "Let's split bills with this group in splitio 💰",
+							title: 'SplitIO',
+							text: "Let's split bills with this group in SplitIO 💰",
 							url: window.location.href
 						})
 						.then(() => console.log('Successful share'))
