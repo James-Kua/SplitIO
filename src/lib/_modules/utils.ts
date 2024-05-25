@@ -10,9 +10,9 @@ export function redirectToAbout() {
 }
 
 export function getMemberAvatarURL(memberName: string, size: number = 40) {
-	return `https://source.boringavatars.com/beam/${size}/${encodeURIComponent(
-		memberName
-	)}?colors=4DAB8C,542638,8F244D,C9306B,E86F9E`;
+    return `https://source.boringavatars.com/beam/${size}/${encodeURIComponent(
+        memberName
+    )}?colors=BDB2A0,D4C0AC,9DBDBE,D9B187,CBB66D`;
 }
 
 export function getExpenseTimestamp(expenseObject: any) {
