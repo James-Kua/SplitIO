@@ -23,6 +23,12 @@
 		const initialPercent = 100 / numMembers;
 
 		return {
+			[SplitType.Share]: membersList.reduce(
+				(acc, [member]) => ({
+					...acc,
+					[member]: 1
+				}), {}
+			),
 			[SplitType.Amount]: membersList.reduce(
 				(acc, [member]) => ({
 					...acc,
@@ -39,6 +45,7 @@
 	}
 
 	const splitOptions: Array<{ name: string; value: SplitType }> = [
+		{ name: 'By shares', value: SplitType.Share},
 		{ name: 'By percentages', value: SplitType.Percent },
 		{ name: 'By exact amounts', value: SplitType.Amount }
 	];
@@ -51,6 +58,7 @@
 	let splitType: SplitType | undefined = undefined;
 
 	function addMember(memberKey: string) {
+		split[SplitType.Share][memberKey] = 0;
 		split[SplitType.Amount][memberKey] = 0;
 		split[SplitType.Percent][memberKey] = 0;
 
@@ -71,6 +79,7 @@
 	}
 
 	function deleteMember(memberKey: string) {
+		delete split[SplitType.Share][memberKey];
 		delete split[SplitType.Amount][memberKey];
 		delete split[SplitType.Percent][memberKey];
 
