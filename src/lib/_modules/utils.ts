@@ -10,9 +10,7 @@ export function redirectToAbout() {
 }
 
 export function getMemberAvatarURL(memberName: string, size: number = 40) {
-	return `https://source.boringavatars.com/beam/${size}/${encodeURIComponent(
-		memberName
-	)}?colors=4DAB8C,542638,8F244D,C9306B,E86F9E`;
+	return `https://api.dicebear.com/8.x/initials/svg?seed=${encodeURIComponent(memberName)}&backgroundColor=f7d794,f3a683,778beb,95e1d3,f8c291,a5d8d8&fontWeight=600&fontSize=40&size=${size}&backgroundType=gradientLinear&chars=2&textColor=211d1d`;
 }
 
 export function getExpenseTimestamp(expenseObject: any) {

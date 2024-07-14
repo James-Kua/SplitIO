@@ -48,10 +48,9 @@
 								<Wrapper>
 									<Graphic 
 										style="background-image: url({getMemberAvatarURL(member)}); 
-										width: 1.65rem; 
-										height: 1.65rem; 
-										background-size: cover; 
-										border-radius: 30%;" 
+										width: 1.92rem; 
+										height: 1.92rem; 
+										background-size: cover;" 
 									/>
 									<Tooltip>
 										{member}
