@@ -81,11 +81,13 @@
 			{#each Object.entries(transaction.splits) as [memberName, split] (memberName)}
 				<ul>
 					<Text>
-						{#if transaction.splitType === SplitType.Percent}
-						<Text>
-							<strong>{memberName}</strong>'s share is {split.toFixed(1)}% 
-							<strong style="margin-left: 5px">({CURRENCY_SYMBOLS[currency]}{(transaction.amount * (split / 100)).toFixed(2)})</strong>
-						</Text>
+						{#if transaction.splitType === SplitType.Share}
+							<strong>{memberName}</strong>'s relative share is <strong>{split}</strong>
+						{:else if transaction.splitType === SplitType.Percent}
+							<Text>
+								<strong>{memberName}</strong>'s share is {split.toFixed(1)}% 
+								<strong style="margin-left: 5px">({CURRENCY_SYMBOLS[currency]}{(transaction.amount * (split / 100)).toFixed(2)})</strong>
+							</Text>
 						{:else if transaction.splitType === SplitType.Amount}
 							<strong>{memberName}</strong>'s share is <strong>{CURRENCY_SYMBOLS[currency]}{split.toFixed(2)}</strong>
 						{/if}

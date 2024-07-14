@@ -10,6 +10,7 @@ export enum GroupNodeStates {
 }
 
 export enum SplitType {
+	Share = "SHARE",
 	Percent = "PERCENT",
 	Amount = "AMOUNT",
 }

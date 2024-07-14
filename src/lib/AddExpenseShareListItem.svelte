@@ -19,6 +19,8 @@
 		setValue(member.name, parseFloat(e.target.value));
 	}
 
+	$: sharePlural = value === 1 ? 'share' : 'shares';
+
 </script>
 
 <li class="item" class:uninvolved={value === 0}>
@@ -26,7 +28,17 @@
 	<strong>{member.name}</strong>
 
 	<div class="meta">
-		{#if splitType === SplitType.Percent}
+		{#if splitType === SplitType.Share}
+			<Textfield
+				{value}
+				on:change={onChangeValue}
+				class="expense-share-textfield"
+				type="number"
+				suffix={sharePlural}
+				input$step={1}
+				input$min={0}
+			/>
+		{:else if splitType === SplitType.Percent}
 			<Textfield
 				{value}
 				on:change={onChangeValue}
