@@ -1,16 +1,3 @@
-<script context="module">
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ page }) {
-		return {
-			props: {
-				groupId: page.params.groupid
-			}
-		};
-	}
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { initAppDB } from '$lib/_modules/initGun';

@@ -11,9 +11,7 @@ import { STORAGE_PREFIX } from './constants';
 export const initAppDB = () => {
 	const GUN = Gun({
 		peers: [
-			'https://splitio-relay.onrender.com/gun',
-			'https://gun-manhattan.herokuapp.com/gun',
-			'https://peer.wallie.io/gun'
+			'https://splitio-relay.onrender.com/gun'
 		],
 		localStorage: false
 	});

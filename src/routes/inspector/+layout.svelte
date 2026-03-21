@@ -1,9 +1,9 @@
 <script lang="ts">
-	import TopAppBar, { Row, Section, AutoAdjust, TopAppBarComponentDev } from '@smui/top-app-bar';
+	import TopAppBar, { Row, Section, AutoAdjust } from '@smui/top-app-bar';
 	import IconButton from '@smui/icon-button';
 	import SplitioIcon from '$lib/SplitioIcon.svelte';
 
-	let topAppBar: TopAppBarComponentDev;
+	let topAppBar: TopAppBar;
 
 	let lightTheme =
 		typeof window === 'undefined' || window.matchMedia('(prefers-color-scheme: light)').matches;

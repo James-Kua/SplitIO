@@ -6,7 +6,8 @@
 	import LayoutGrid, { Cell, InnerGrid } from '@smui/layout-grid';
 	import Select, { Option } from '@smui/select';
 	import { Graphic } from '@smui/list';
-	import { Currency, Expense, Member, SplitType } from './_modules/types';
+	import type { Currency, Expense, Member } from './_modules/types';
+	import { SplitType } from './_modules/types';
 	import { getMemberAvatarURL } from './_modules/utils';
 	import AddExpenseSplitField from './AddExpenseSplitField.svelte';
 	import { CURRENCY_SYMBOLS } from './_modules/constants';

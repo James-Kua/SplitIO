@@ -1,21 +1,9 @@
-<script context="module">
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ page }) {
-		return {
-			props: {
-				groupId: page.params.groupid
-			}
-		};
-	}
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import Fab, { Icon as FabIcon } from '@smui/fab';
 	import List, { Item, Text, Meta, Graphic } from '@smui/list';
-	import Snackbar, { Label, SnackbarComponentDev } from '@smui/snackbar';
+	import Snackbar, { Label } from '@smui/snackbar';
 	import { initAppDB } from '$lib/_modules/initGun';
 	import AddExpenseDialog from '$lib/AddExpenseDialog.svelte';
 	import AddMemberDialog from '$lib/AddMemberDialog.svelte';
@@ -32,13 +20,11 @@
 	import GroupNotFoundDialog from '$lib/GroupNotFoundDialog.svelte';
 	import GroupNotesDialog from '$lib/GroupNotesDialog.svelte';
 
-	export let groupId: string;
-
 	let openAddMemberDialog: boolean = false;
 	let openAddExpenseDialog: boolean = false;
 	let openViewBalancesDialog: boolean = false;
 	let openGroupNotesDialog: boolean = false;
-	let copiedLinkSnackbar: SnackbarComponentDev;
+	let copiedLinkSnackbar: Snackbar;
 
 	let groupNodeState = GroupNodeStates.Unknown;
 
@@ -74,20 +60,18 @@
 	];
 
 	onMount(() => {
+		const groupIdFromUrl = $page.params.groupid;
 		resetGroupStore();
 		const appDB = initAppDB();
 		$secretKey = window.location.hash;
-		const GROUPID = groupId || 'unknown group';
+		const GROUPID = groupIdFromUrl || 'unknown group';
 		$groupDB = appDB.get(GROUPID);
 
 		// detect group not found
-		$groupDB.once(
-			(val) => {
-				if (val === undefined) groupNodeState = GroupNodeStates.NotFound;
-				else groupNodeState = GroupNodeStates.Found;
-			},
-			{ wait: 5000 }
-		);
+		$groupDB.once((val) => {
+			if (val === undefined) groupNodeState = GroupNodeStates.Unknown;
+			else groupNodeState = GroupNodeStates.Found;
+		});
 
 		onSecure(
 			$groupDB.get('expenses').map(),
@@ -104,7 +88,7 @@
 			$secretKey,
 			(plain, key) => ($groupStore.members[plain.name] = plain),
 			(key) => {
-				delete $groupStore.members[key];
+				delete $groupStore.members[plain.name];
 				$groupStore.members = $groupStore.members;
 			}
 		);
