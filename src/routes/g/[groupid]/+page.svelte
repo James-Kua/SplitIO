@@ -15,7 +15,7 @@
 	import { onMount } from 'svelte';
 	import Fab, { Icon as FabIcon } from '@smui/fab';
 	import List, { Item, Text, Meta, Graphic } from '@smui/list';
-	import Snackbar, { Label, SnackbarComponentDev } from '@smui/snackbar';
+	import Snackbar, { Label } from '@smui/snackbar';
 	import { initAppDB } from '$lib/_modules/initGun';
 	import AddExpenseDialog from '$lib/AddExpenseDialog.svelte';
 	import AddMemberDialog from '$lib/AddMemberDialog.svelte';
@@ -38,7 +38,7 @@
 	let openAddExpenseDialog: boolean = false;
 	let openViewBalancesDialog: boolean = false;
 	let openGroupNotesDialog: boolean = false;
-	let copiedLinkSnackbar: SnackbarComponentDev;
+	let copiedLinkSnackbar: Snackbar;
 
 	let groupNodeState = GroupNodeStates.Unknown;
 
