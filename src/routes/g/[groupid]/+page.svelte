@@ -81,13 +81,10 @@
 		$groupDB = appDB.get(GROUPID);
 
 		// detect group not found
-		$groupDB.once(
-			(val) => {
-				if (val === undefined) groupNodeState = GroupNodeStates.NotFound;
-				else groupNodeState = GroupNodeStates.Found;
-			},
-			{ wait: 5000 }
-		);
+		$groupDB.once((val) => {
+			if (val === undefined) groupNodeState = GroupNodeStates.Unknown;
+			else groupNodeState = GroupNodeStates.Found;
+		});
 
 		onSecure(
 			$groupDB.get('expenses').map(),
