@@ -1,11 +1,10 @@
-import type { IGunChainReference } from 'gun/types/chain';
 import { getSEA } from './initGun';
 import { redirectToError } from './utils';
 
 const SEA = getSEA();
 
 export async function putSecure(
-	node: IGunChainReference<any>,
+	node: any,
 	payload: any,
 	secretKey: string,
 	callback: Function
@@ -14,12 +13,12 @@ export async function putSecure(
 	node.put(secretPayload, callback);
 }
 
-export async function deleteSecure(node: IGunChainReference<any>, callback: Function) {
+export async function deleteSecure(node: any, callback: Function) {
 	node.put(null, callback);
 }
 
-export async function onSecure(node, secretKey: string, callback, emptyCallback) {
-	node.on(async (data, key) => {
+export async function onSecure(node: any, secretKey: string, callback: any, emptyCallback: any) {
+	node.on(async (data: any, key: any) => {
 		if (data) {
 			let plain = await handleDecrypt(data, secretKey);
 			callback(plain, key);
@@ -29,7 +28,7 @@ export async function onSecure(node, secretKey: string, callback, emptyCallback)
 	});
 }
 
-async function handleDecrypt(payload, secretKey) {
+async function handleDecrypt(payload: any, secretKey: string) {
 	let res = undefined;
 	res = await SEA.decrypt(payload, secretKey);
 	if (!res) {

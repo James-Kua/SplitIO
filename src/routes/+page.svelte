@@ -5,7 +5,6 @@
 	import { getSEA, initAppDB } from '$lib/_modules/initGun';
 	import { redirectToGroup } from '$lib/_modules/utils';
 	import { putSecure } from '$lib/_modules/secure';
-	import type { IGunStaticSEA } from 'gun/types/static/sea';
 	import LoadingSpinnerOverlay from '$lib/LoadingSpinnerOverlay.svelte';
 	import RecentGroupsList from '$lib/RecentGroupsList.svelte';
 
@@ -13,7 +12,7 @@
 	let showLoadingSpinner: boolean = false;
 
 	let appDB: any = undefined;
-	let SEA: IGunStaticSEA | undefined = undefined;
+	let SEA: any = undefined;
 
 	const initGunIfNew = () => {
 		if (!appDB) appDB = initAppDB();
@@ -27,7 +26,7 @@
 		const secretKey = '#' + pair.priv;
 		const nodeid = result._.has;
 		let infoNode = appDB.get(nodeid).get('groupInfo');
-		putSecure(infoNode, { name: groupName, currency }, secretKey, (ack) => {
+		putSecure(infoNode, { name: groupName, currency }, secretKey, (ack: any) => {
 			if (!ack.err) {
 				redirectToGroup(nodeid, secretKey);
 			} else {

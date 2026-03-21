@@ -1,18 +1,6 @@
-<script context="module">
-	/**
-	 * @type {import('@sveltejs/kit').Load}
-	 */
-	export async function load({ page }) {
-		return {
-			props: {
-				groupId: page.params.groupid
-			}
-		};
-	}
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import { page } from '$app/stores';
 	import Fab, { Icon as FabIcon } from '@smui/fab';
 	import List, { Item, Text, Meta, Graphic } from '@smui/list';
 	import Snackbar, { Label } from '@smui/snackbar';
@@ -31,8 +19,6 @@
 	import { GroupNodeStates } from '$lib/_modules/types';
 	import GroupNotFoundDialog from '$lib/GroupNotFoundDialog.svelte';
 	import GroupNotesDialog from '$lib/GroupNotesDialog.svelte';
-
-	export let groupId: string;
 
 	let openAddMemberDialog: boolean = false;
 	let openAddExpenseDialog: boolean = false;
@@ -74,10 +60,11 @@
 	];
 
 	onMount(() => {
+		const groupIdFromUrl = $page.params.groupid;
 		resetGroupStore();
 		const appDB = initAppDB();
 		$secretKey = window.location.hash;
-		const GROUPID = groupId || 'unknown group';
+		const GROUPID = groupIdFromUrl || 'unknown group';
 		$groupDB = appDB.get(GROUPID);
 
 		// detect group not found
@@ -101,7 +88,7 @@
 			$secretKey,
 			(plain, key) => ($groupStore.members[plain.name] = plain),
 			(key) => {
-				delete $groupStore.members[key];
+				delete $groupStore.members[plain.name];
 				$groupStore.members = $groupStore.members;
 			}
 		);
